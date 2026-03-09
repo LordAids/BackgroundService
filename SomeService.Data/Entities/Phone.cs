@@ -1,13 +1,24 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SomeService.Data.Entities
 {
-    public class Phone
+    [Table("Phones")]
+    public class Phone : BaseEntity
     {
-        [JsonPropertyName("number")]
-        public string? Number { get; set; }
-        
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public new int Id { get; set; }
+
+        public int OfficeId { get; set; }
+
+        [Required]
+        public string PhoneNumber { get; set; }
+
+        public string? Additional { get; set; }
+
+        [ForeignKey(nameof(OfficeId))]
+        public Office Office { get; set; }
     }
 }

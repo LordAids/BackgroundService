@@ -22,8 +22,6 @@ namespace SomeService.Data
             builder.Entity<Office>(entity =>
             {
                 entity.OwnsOne(o => o.Coordinates, nav => nav.ToJson("Coordinates"));
-                entity.OwnsOne(o => o.Address, nav => nav.ToJson("Address"));
-                entity.OwnsMany(o => o.Phones, nav => nav.ToJson("Phones"));
             });
         }
     }

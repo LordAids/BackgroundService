@@ -1,14 +1,16 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BackgroundService.DTOs;
+
+using Microsoft.Extensions.Logging;
+
+using SomeService.Data.Entities;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Text.Json.Serialization;
-
-using SomeService.Data.Entities;
+using System.Threading.Tasks;
 
 namespace BackgroundService.Services
 {
@@ -37,20 +39,57 @@ namespace BackgroundService.Services
                 throw new FileNotFoundException("Файл терминалов не найден", filePath);
             }
 
-            await using var stream = File.OpenRead(filePath);
-
-            var offices = await JsonSerializer.DeserializeAsync<List<Office>>(
+            TerminalsRootDto root;
+            await using (var stream = File.OpenRead(filePath))
+            {
+                root = await JsonSerializer.DeserializeAsync<TerminalsRootDto>(
                 stream, JsonOptions, cancellationToken);
+            }
 
-            if (offices is null || offices.Count == 0)
+            if (root?.Cities is null || root.Cities.Count == 0)
             {
                 _logger.LogWarning("Файл пустой или не содержит терминалов: {FilePath}", filePath);
                 return [];
             }
 
+            var offices = root.Cities
+                .Where(c => c.Terminals?.Terminal is { Count: > 0 })
+                .SelectMany(c => c.Terminals!.Terminal.Select(t => MapToEntity(t, c)))
+                .ToList();
+
             _logger.LogInformation("Загружено {Count} терминалов из файла", offices.Count);
 
             return offices;
         }
+
+        private static Office MapToEntity(TerminalDto terminal, CityDto city) => new()
+        {
+            Id = int.TryParse(terminal.Id, out var id) ? id : 0,
+            CityCode = city.CityId ?? 0,
+            Type = terminal.IsPvz ? OfficeType.PVZ : OfficeType.WAREHOUSE,
+            WorkTime = terminal.CalcSchedule?.Derival,
+            Coordinates = new Coordinates
+            {
+                Latitude = double.TryParse(terminal.Latitude,
+                System.Globalization.NumberStyles.Float,
+                System.Globalization.CultureInfo.InvariantCulture,
+                out var lat) ? lat : 0,
+                Longitude = double.TryParse(terminal.Longitude,
+                System.Globalization.NumberStyles.Float,
+                System.Globalization.CultureInfo.InvariantCulture,
+                out var lon) ? lon : 0,
+            },
+            AddressCity = city.Name,
+            AddressRegion = city.Name,
+            AddressStreet = terminal.FullAddress,
+            Phones = terminal.Phones.Count > 0
+            ? new Phone
+            {
+                PhoneNumber = terminal.Phones[0].Number ?? string.Empty,
+                Additional = terminal.Phones[0].Comment
+            }
+            : null,
+            CountryCode = "N/A",
+        };
     }
 }

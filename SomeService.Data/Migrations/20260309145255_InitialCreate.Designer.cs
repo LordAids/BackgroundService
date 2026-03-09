@@ -117,7 +117,7 @@ namespace SomeService.Data.Migrations
                             b1.ToTable("Offices");
 
                             b1
-                                .ToJson("coordinates")
+                                .ToJson("Coordinates")
                                 .HasColumnType("jsonb");
 
                             b1.WithOwner()
