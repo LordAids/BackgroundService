@@ -1,3 +1,5 @@
 <Solution>
   <Project Path="BackgroundService/BackgroundService.csproj" />
+  <Project Path="SomeService.Data/SomeService.Data.csproj" />
+  <Project Path="SomeService.Services/SomeService.Services.csproj" />
 </Solution>
