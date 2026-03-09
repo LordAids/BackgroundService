@@ -1,26 +1,27 @@
-﻿using SomeService.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
-public class Office : BaseEntity
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
+
+namespace SomeService.Data.Entities
 {
-    public string? Code { get; set; }
-    public int CityCode { get; set; }
-    public string? Uuid { get; set; }
-    public OfficeType? Type { get; set; }
-    public string? CountryCode { get; set; }
-    public string? WorkTime { get; set; }
+    [Table("Offices")]
+    [Index(nameof(Code), Name = "ix_offices_code")]
+    [Index(nameof(CityCode), Name = "ix_offices_city_code")]
+    [Index(nameof(Uuid), Name = "ix_offices_uuid")]
+    public class Office : BaseEntity
+    {
+        public string? Code { get; set; }
+        public int CityCode { get; set; }
+        public string? Uuid { get; set; }
+        public OfficeType? Type { get; set; }
+        public string? CountryCode { get; set; }
+        public string? WorkTime { get; set; }
 
-    // JSON-колонки
-    public Coordinates Coordinates { get; set; } = null!;
-    public Address Address { get; set; } = null!;
-    public List<Phone> Phones { get; set; } = new();
+        public Coordinates Coordinates { get; set; } = null!;
+        public Address Address { get; set; } = null!;
+        public List<Phone> Phones { get; set; } = new();
 
-    public Office() { }
+        public Office() { }
+    }
 }
-

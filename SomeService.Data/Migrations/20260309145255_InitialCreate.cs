@@ -21,9 +21,9 @@ namespace SomeService.Data.Migrations
                     Type = table.Column<int>(type: "integer", nullable: true),
                     CountryCode = table.Column<string>(type: "text", nullable: true),
                     WorkTime = table.Column<string>(type: "text", nullable: true),
-                    address = table.Column<string>(type: "jsonb", nullable: false),
-                    coordinates = table.Column<string>(type: "jsonb", nullable: false),
-                    phones = table.Column<string>(type: "jsonb", nullable: true)
+                    Address = table.Column<string>(type: "jsonb", nullable: false),
+                    Coordinates = table.Column<string>(type: "jsonb", nullable: false),
+                    Phones = table.Column<string>(type: "jsonb", nullable: true)
                 },
                 constraints: table =>
                 {

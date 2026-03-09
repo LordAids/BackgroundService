@@ -1,0 +1,99 @@
+[
+  {
+    "id": 2,
+    "code": "SPB001",
+    "cityCode": 7800002,
+    "uuid": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+    "type": "Pickup",
+    "countryCode": "RU",
+    "workTime": "Пн-Пт: 08:00-20:00",
+    "coordinates": {
+      "сoordinateX": 59.934280,
+      "сoordinateY": 30.335099
+    },
+    "address": {
+      "city": "Санкт-Петербург",
+      "street": "Невский проспект",
+      "house": "28",
+      "postalCode": "191025",
+      "region": "Санкт-Петербург",
+      "subRegion": "Центральный"
+    },
+    "phones": [
+      {
+        "number": "+7 (812) 987-65-43",
+        "description": "Основной"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "code": "EKB001",
+    "cityCode": 6600001,
+    "uuid": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+    "type": "Delivery",
+    "countryCode": "RU",
+    "workTime": "Пн-Сб: 09:00-19:00",
+    "coordinates": {
+      "сoordinateX": 56.838011,
+      "сoordinateY": 60.597474
+    },
+    "address": {
+      "city": "Екатеринбург",
+      "street": "Улица 8 Марта",
+      "house": "51",
+      "postalCode": "620014",
+      "region": "Свердловская область",
+      "subRegion": "Верх-Исетский"
+    },
+    "phones": [
+      {
+        "number": "+7 (343) 456-78-90",
+        "description": "Основной"
+      },
+      {
+        "number": "+7 (343) 456-78-91",
+        "description": "Склад"
+      },
+      {
+        "number": "+7 (343) 456-78-92",
+        "description": "Бухгалтерия"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "code": "KZN001",
+    "cityCode": 6600001,
+    "uuid": "c3d4e5f6-a7b8-9013-cdef-123456789012",
+    "type": "Delivery",
+    "countryCode": "RU",
+    "workTime": "Пн-Сб: 09:00-19:00",
+    "coordinates": {
+      "сoordinateX": 26.838011,
+      "сoordinateY": 63.597474
+    },
+    "address": {
+      "city": "Казань",
+      "street": "Улица 8 Марта",
+      "house": "51",
+      "postalCode": "620014",
+      "region": "Свердловская область",
+      "subRegion": "Верх-Исетский"
+    },
+    "phones": [
+      {
+        "number": "+7 (343) 456-78-90",
+        "description": "Основной"
+      },
+      {
+        "number": "+7 (343) 456-78-91",
+        "description": "Склад"
+      },
+      {
+        "number": "+7 (343) 456-78-92",
+        "description": "Бухгалтерия"
+      }
+    ]
+  }
+]

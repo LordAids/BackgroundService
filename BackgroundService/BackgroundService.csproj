@@ -24,10 +24,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SomeService.Data\SomeService.Data.csproj" />
+    <ProjectReference Include="..\SomeService.Services\SomeService.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="terminals.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
