@@ -33,7 +33,6 @@ namespace BackgroundService.Services
                     "Следующий запуск через {Hours}ч {Minutes}м",
                     (int)delay.TotalHours,
                     delay.Minutes);
-                await ImportAsync(stoppingToken);
 
                 await Task.Delay(delay, stoppingToken);
 
